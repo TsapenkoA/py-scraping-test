@@ -61,9 +61,7 @@ class BaseParser:
         raise NotImplementedError
 
 class VendrParser(BaseParser):
-    """
-    Мок-версія парсера для тестування
-    """
+    
     MOCK_PRODUCTS = [
         {"slug": "devops-tool-1", "name": "DevOps Tool 1", "category": "DevOps",
          "price_range": "$50-$200", "description": "Powerful DevOps automation tool."},
@@ -84,16 +82,12 @@ class VendrParser(BaseParser):
     }
 
     def collect_product_links_from_category(self, category_name):
-        """
-        Повертає список 'URL'-подібних slug для черги завдань
-        """
+       
         slugs = self.CATEGORY_SLUGS.get(category_name, [])
         return [f"https://mock.vendr.com/product/{slug}" for slug in slugs]
 
     def parse_product_page(self, product_url):
-        """
-        Повертає словник продукту на основі slug
-        """
+      
         slug = product_url.rstrip("/").split("/")[-1]
         for p in self.MOCK_PRODUCTS:
             if p["slug"] == slug:
